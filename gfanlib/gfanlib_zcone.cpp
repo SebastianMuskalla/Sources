@@ -701,7 +701,7 @@ void ZCone::ensureStateAsMinimum(int s)const
         {
           QMatrix m=ZToQMatrix(equations);
           m.reduce();
-          m.REformToRREform(true);
+          m.REformToRREform();
           ZMatrix inequalities2(0,equations.getWidth());
           for(int i=0;i<inequalities.getHeight();i++)
             {
@@ -720,7 +720,7 @@ void ZCone::ensureStateAsMinimum(int s)const
     {
       QMatrix equations2=ZToQMatrix(equations);
       equations2.reduce(false,false,true);
-      equations2.REformToRREform();
+      equations2.REformToRREform(true);
       for(int i=0;i<inequalities.getHeight();i++)
         {
           inequalities[i]=QToZVectorPrimitive(equations2.canonicalize(ZToQVector(inequalities[i])));
