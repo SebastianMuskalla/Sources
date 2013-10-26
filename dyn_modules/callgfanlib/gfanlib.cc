@@ -8,6 +8,7 @@
 #include <bbfan.h>
 #include <bbpolytope.h>
 #include <gitfan.h>
+#include <tropical.h>
 
 #include <Singular/ipid.h>
 #include <Singular/mod_lib.h>
@@ -23,15 +24,16 @@ int SI_MOD_INIT(gfanlib)(SModulFunctions* p)
   bbfan_setup(p);
   bbpolytope_setup(p);
   gitfan_setup(p);
+  tropical_setup(p);
   return 0;
 }
 
 #ifndef EMBED_PYTHON
 extern "C"
-{ 
-int mod_init(SModulFunctions* psModulFunctions)
-{ 
-  return SI_MOD_INIT(gfanlib)(psModulFunctions); 
-}
+{
+  int mod_init(SModulFunctions* psModulFunctions)
+  {
+    return SI_MOD_INIT(gfanlib)(psModulFunctions);
+  }
 }
 #endif
