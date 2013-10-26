@@ -52,6 +52,11 @@ void    nrzSetExp(int c, coeffs r);
 void    nrzInitExp(int c, coeffs r);
 void    nrzDelete(number *a, const coeffs r);
 
+#ifdef HAVE_FACTORY
+CanonicalForm nrzConvSingNFactoryN(number n, BOOLEAN setChar, const coeffs /*r*/);
+number nrzConvFactoryNSingN(const CanonicalForm n, const coeffs r);
+#endif // HAVE_FACTORY
+
 number nrzMapQ(number from, const coeffs src, const coeffs dst);
 #endif
 #endif
