@@ -160,8 +160,6 @@ struct n_Procs_s
    const char *  (*cfRead)(const char * s, number * a, const coeffs r);
    void    (*cfNormalize)(number &a, const coeffs r);
 
-
-
    BOOLEAN (*cfGreater)(number a,number b, const coeffs r),
             /// tests
            (*cfEqual)(number a,number b, const coeffs r),
@@ -542,6 +540,7 @@ static inline number n_Add(number a, number b, const coeffs r)
 
 /// return the quotient of 'a' and 'b', i.e., a/b;
 /// raise an error if 'b' is not invertible in r
+/// exception in Z: raises an error if 'a' is not divisible by 'b'
 static inline number n_Div(number a, number b, const coeffs r)
 { assume(r != NULL); assume(r->cfDiv!=NULL); return r->cfDiv(a,b,r); }
 
