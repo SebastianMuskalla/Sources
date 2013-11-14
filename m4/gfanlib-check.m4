@@ -17,7 +17,7 @@ if test "x$ENABLE_GFANLIB" = xyes; then
 
  if test "$ac_cv_header_setoper_h" == no -a "$ac_cv_header_cdd_setoper_h" == no -a "$ac_cv_header_cddlib_setoper_h" == no
  then
-	AC_MSG_WARN([Error, setoper.h is missing!]) 
+	AC_MSG_WARN([Error, setoper.h is missing!])
  fi
 
  AC_MSG_CHECKING([whether libcddgmp is usable])
@@ -54,7 +54,7 @@ if test "x$ENABLE_GFANLIB" = xyes; then
 
  AC_MSG_RESULT(no)
 
- AC_SUBST(CDDGMPLDFLAGS) 
+ AC_SUBST(CDDGMPLDFLAGS)
 else
  AC_MSG_RESULT(no)
  PASSED_ALL_TESTS_FOR_GFANLIB="0"
