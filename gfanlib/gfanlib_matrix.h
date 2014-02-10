@@ -67,15 +67,21 @@ public:
       height+=m.height;
     }
   void appendRow(Vector<typ> const &v)
-    {
-      assert((int)v.size()==width);
-      rows.push_back(v);
-      height++;
-    }
+  {
+    assert((int)v.size()==width);
+    rows.push_back(v);
+    height++;
+  }
+  void prependRow(Vector<typ> const &v)
+  {
+    assert((int)v.size()==width);
+    rows.insert(rows.begin(),v);
+    height++;
+  }
   void eraseLastRow()
   {
     assert(rows.size()>0);
-    rows.resize(rows.size()-1);
+    rows.pop_back();
     height--;
   }
   /*IntegerVector vectormultiply(IntegerVector const &v)const

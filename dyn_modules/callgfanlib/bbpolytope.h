@@ -16,4 +16,6 @@ int getAmbientDimension(gfan::ZCone* zc);
 int getCodimension(gfan::ZCone *zc);
 int getDimension(gfan::ZCone* zc);
 
+gfan::ZVector intStar2ZVectorWithLeadingOne(const int d, const int* i);
+
 #endif
