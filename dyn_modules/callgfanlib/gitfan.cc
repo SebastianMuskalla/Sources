@@ -16,6 +16,7 @@
 #include <Singular/ipshell.h>
 #include <libpolys/coeffs/bigintmat.h>
 
+#include <callgfanlib_conversion.h>
 #include <bbcone.h>
 #include <bbfan.h>
 #include <gitfan.h>

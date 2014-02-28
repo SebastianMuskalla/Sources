@@ -10,16 +10,8 @@
 #include <libpolys/coeffs/longrat.h>
 #include <libpolys/coeffs/bigintmat.h>
 
-#include <bbcone.h>
+#include <callgfanlib_conversion.h>
 #include <sstream>
-
-// #include <omalloc/omalloc.h>
-// #include <kernel/febase.h>
-// #include <kernel/longrat.h>
-// #include <Singular/subexpr.h>
-// #include <gfanlib/gfanlib.h>
-// #include <kernel/ring.h>
-// #include <kernel/polys.h>
 
 int polytopeID;
 
