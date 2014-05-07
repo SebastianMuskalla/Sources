@@ -15,6 +15,8 @@
 #include <polymake_documentation.h>
 #include <polymake/Graph.h>
 
+#include <polymake_matroid.h>
+
 polymake::Main* init_polymake=NULL;
 
 static BOOLEAN bbpolytope_Op2(int op, leftv res, leftv i1, leftv i2)
@@ -1757,11 +1759,36 @@ BOOLEAN PMvertexEdgeGraph(leftv res, leftv args)
   return TRUE;
 }
 
+BOOLEAN PMchangeApplication(leftv res, leftv args)
+{
+  leftv u = args;
+  if ((u!=NULL) && (u->Typ()==STRING_CMD))
+  {
+    if (u->next==NULL)
+    {
+      std::string applicationName((char*) u->Data());
+      try
+        { init_polymake->set_application(applicationName); }
+      catch (const std::exception& ex)
+      {
+        WerrorS("ERROR: "); WerrorS(ex.what()); WerrorS("\n");
+        return TRUE;
+      }
+      res->rtyp = NONE;
+      res->data = NULL;
+      return FALSE;
+    }
+  }
+  WerrorS("changeApplication: unexpected parameters");
+  return TRUE;
+}
+
+
 extern "C" int SI_MOD_INIT(polymake)(SModulFunctions* p)
 {
   if (init_polymake==NULL)
-    {init_polymake = new polymake::Main();}
-  init_polymake->set_application("fan");
+    { init_polymake = new polymake::Main(); }
+  init_polymake->set_application("polytope");
   // p->iiAddCproc("polymake.so","coneViaPoints",FALSE,PMconeViaRays);
   // p->iiAddCproc("polymake.so","polytopeViaPoints",FALSE,PMpolytopeViaVertices);
   p->iiAddCproc("polymake.so","isLatticePolytope",FALSE,PMisLatticePolytope);
@@ -1805,8 +1832,12 @@ extern "C" int SI_MOD_INIT(polymake)(SModulFunctions* p)
   p->iiAddCproc("polymake.so","vertexAdjacencyGraph",FALSE,PMvertexAdjacencyGraph);
   p->iiAddCproc("polymake.so","vertexEdgeGraph",FALSE,PMvertexEdgeGraph);
 
+  p->iiAddCproc("polymake.so","changeApplication",FALSE,PMchangeApplication);
+
   blackbox* b=getBlackboxStuff(polytopeID);
   b->blackbox_Op2=bbpolytope_Op2;
+
+  matroid_setup(p);
 
   init_polymake_help();
   return MAX_TOK;
