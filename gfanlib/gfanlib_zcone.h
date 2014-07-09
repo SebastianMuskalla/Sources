@@ -9,6 +9,7 @@
 #define LIB_CONE_H_
 
 #include "gfanlib_matrix.h"
+#include <sstream>
 
 namespace gfan{
 
@@ -352,11 +353,11 @@ public:
      */
    // PolyhedralCone projection(int newn)const;
     friend void operator<<(std::ostream &f, ZCone const &c);
+
+    void debugPrint() const;
 };
 
 };
-
-
 
 
 #endif /* LIB_CONE_H_ */

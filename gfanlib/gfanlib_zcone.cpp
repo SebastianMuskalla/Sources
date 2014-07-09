@@ -741,6 +741,41 @@ void operator<<(std::ostream &f, ZCone const &c)
   f<<c.equations<<std::endl;
 }
 
+void ZCone::debugPrint() const
+{
+  std::stringstream s;
+  s<<"AMBIENT_DIM"<<std::endl;
+  s<<this->ambientDimension()<<std::endl;
+
+  gfan::ZMatrix i=this->getInequalities();
+  if (this->areFacetsKnown())
+    s<<"FACETS"<<std::endl;
+  else
+    s<<"INEQUALITIES"<<std::endl;
+  s<<i<<std::endl;
+
+  gfan::ZMatrix e=this->getEquations();
+  if (this->areImpliedEquationsKnown())
+    s<<"LINEAR_SPAN"<<std::endl;
+  else
+    s<<"EQUATIONS"<<std::endl;
+  s<<e<<std::endl;
+
+  if (this->areExtremeRaysKnown())
+  {
+    gfan::ZMatrix r=this->extremeRays();
+    s<<"RAYS"<<std::endl;
+    s<<r<<std::endl;
+
+    gfan::ZMatrix l=this->generatorsOfLinealitySpace();
+    s<<"LINEALITY_SPACE"<<std::endl;
+    s<<l<<std::endl;
+  }
+
+  std::cout << s.str();
+  return;
+}
+
 
 ZCone::ZCone(int ambientDimension):
   preassumptions(PCP_impliedEquationsKnown|PCP_facetsKnown),

@@ -78,14 +78,14 @@ void idShow(const ideal id, const ring lmRing, const ring tailRing, const int de
 }
 #endif
 
-/// index of generator with leading term in ground ring (if any); 
+/// index of generator with leading term in ground ring (if any);
 /// otherwise -1
 int id_PosConstant(ideal id, const ring r)
 {
   id_Test(id, r);
-  const int N = IDELEMS(id) - 1; 
-  const poly * m = id->m + N; 
- 
+  const int N = IDELEMS(id) - 1;
+  const poly * m = id->m + N;
+
   for (int k = N; k >= 0; --k, --m)
   {
     const poly p = *m;
@@ -93,7 +93,7 @@ int id_PosConstant(ideal id, const ring r)
        if (p_LmIsConstantComp(p, r) == TRUE)
 	 return k;
   }
-   
+
   return -1;
 }
 

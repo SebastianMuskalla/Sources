@@ -13,6 +13,7 @@
 #include <assert.h>
 #include <algorithm>
 #include <iostream>
+#include <sstream>
 
 #include "gfanlib_z.h"
 #include "gfanlib_q.h"
@@ -301,6 +302,20 @@ public:
     assert(!typ::isField());
     return (*this)/gcd();
   }
+
+  void debugPrint()const
+  {
+    std::stringstream s;
+    s<<"(";
+    for(typename std::vector<typ>::const_iterator i=this->v.begin();i!=this->v.end();i++)
+    {
+      if(i!=this->v.begin()) s<<",";
+      s<<*i;
+    }
+    s<<")"<<std::endl;
+    std::cout << s.str();
+    return;
+  }
 };
 
 typedef Vector<Integer> ZVector;
@@ -392,9 +407,8 @@ inline ZVector QToZVectorPrimitive(QVector const &v)
     mpz_clear(lcm);
 
     return ret;
-}
+};
 
-}
-
+};
 
 #endif /* LIB_ZVECTOR_H_ */

@@ -8,6 +8,7 @@
 #ifndef LIB_ZMATRIX_H_
 #define LIB_ZMATRIX_H_
 
+#include <sstream>
 #include <vector>
 #include <algorithm>
 #include "gfanlib_vector.h"
@@ -31,7 +32,7 @@ public:
   };
   Matrix():width(0),height(0){
   };
-  static Matrix rowVectorMatrix(Vector<typ> const &v)
+  Matrix rowVectorMatrix(Vector<typ> const &v)
   {
     Matrix ret(1,v.size());
     for(int i=0;i<v.size();i++)ret[0][i]=v[i];
@@ -188,6 +189,21 @@ public:
       }
     f<<"}"<<std::endl;
     return f;
+  }
+
+  void debugPrint()
+  {
+    std::stringstream f;
+    f<<"{";
+    for(int i=0;i<this->getHeight();i++)
+      {
+        if(i)f<<","<<std::endl;
+        f<<this->rows[i];
+      }
+    f<<"}"<<std::endl;
+    std::cout << f.str();
+    return;
+
   }
   /**
      Swaps the i th and the j th row.
