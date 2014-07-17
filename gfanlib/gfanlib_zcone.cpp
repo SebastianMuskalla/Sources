@@ -761,16 +761,13 @@ void ZCone::debugPrint() const
     s<<"EQUATIONS"<<std::endl;
   s<<e<<std::endl;
 
-  if (this->areExtremeRaysKnown())
-  {
-    gfan::ZMatrix r=this->extremeRays();
-    s<<"RAYS"<<std::endl;
-    s<<r<<std::endl;
+  gfan::ZMatrix r=this->extremeRays();
+  s<<"RAYS"<<std::endl;
+  s<<r<<std::endl;
 
-    gfan::ZMatrix l=this->generatorsOfLinealitySpace();
-    s<<"LINEALITY_SPACE"<<std::endl;
-    s<<l<<std::endl;
-  }
+  gfan::ZMatrix l=this->generatorsOfLinealitySpace();
+  s<<"LINEALITY_SPACE"<<std::endl;
+  s<<l<<std::endl;
 
   std::cout << s.str();
   return;
