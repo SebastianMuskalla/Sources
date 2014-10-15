@@ -4,7 +4,7 @@
 #include <Singular/ipid.h>
 #include <Singular/ipshell.h>
 
-#include <Singular/dyn_modules/callgfanlib/bbfan.h>
+#include <Singular/dyn_modules/gfanlib/bbfan.h>
 
 int MATROID_CMD;
 
@@ -166,7 +166,7 @@ BOOLEAN circuits(leftv res, leftv args)
 	{
 		polymake::perl::Object* matroid = (polymake::perl::Object*) u->Data();
 		polymake::Array<polymake::Set<int> > circ;
-		lists L;		
+		lists L;
 		try
 		{
 			matroid->give("CIRCUITS") >> circ;
@@ -192,7 +192,7 @@ BOOLEAN bases(leftv res, leftv args)
 	{
 		polymake::perl::Object* matroid = (polymake::perl::Object*) u->Data();
 		polymake::Array<polymake::Set<int> > bas;
-		lists L;		
+		lists L;
 		try
 		{
 			matroid->give("BASES") >> bas;
@@ -284,7 +284,7 @@ void matroid_setup(SModulFunctions* p)
   p->iiAddCproc("polymake.so","circuits",FALSE,circuits);
   p->iiAddCproc("polymake.so","bases",FALSE,bases);
 	p->iiAddCproc("polymake.so","bergmanFanMatroid",FALSE,bergmanFanMatroid);
-	
+
   MATROID_CMD = setBlackboxStuff(b,"matroid");
 }
 
